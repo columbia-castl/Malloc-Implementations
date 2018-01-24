@@ -1,9 +1,9 @@
 #! /bin/sh
 
-case "$OSTYPE" in
+case "$1" in
 [Ll]inux*)
   echo "Compiling for Linux"
-  gcc -DNO_LOCKS=1 -DMOZ_MEMORY=1 -DMOZ_MEMORY_LINUX=1 -pipe -march=pentium4 -O3 -finline-limit=65000 -fkeep-inline-functions -finline-functions -ffast-math -fomit-frame-pointer -DNDEBUG  -I. -I../../heaplayers -D_REENTRANT=1 -shared jemalloc.c -o libjemalloc.so -lpthread;;
+  gcc -DNO_LOCKS=1 -DMOZ_MEMORY=1 -DMOZ_MEMORY_LINUX=1 -pipe -march=x86-64 -O3 -finline-limit=65000 -fkeep-inline-functions -finline-functions -ffast-math -fomit-frame-pointer -DNDEBUG -fPIC -I. -I../../heaplayers -D_REENTRANT=1 -shared jemalloc.c -o libjemalloc.so -lpthread;;
 solaris)
   echo "Compiling for Solaris"
   #CC -xildoff -native -noex -xipo=2 -xO5 -mt -DNDEBUG -I. -I.. -D_REENTRANT=1 -G -PIC libjemalloc.cpp -o libjemalloc.so;;
